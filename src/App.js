@@ -168,7 +168,12 @@ function App() {
         <Field fields={fields} />
       </main>
       <footer className="footer">
-        <Button status={status} onStart={onStart} onRestart={onRestart} />
+        <Button
+          status={status}
+          onStop={onStop}
+          onStart={onStart}
+          onRestart={onRestart}
+        />
         <ManipulationPanel onChange={onChangeDirection} />
       </footer>
     </div>
