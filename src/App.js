@@ -6,7 +6,7 @@ import ManipulationPanel from './components/ManipulationPanel'
 import { initFields, getFoodPosition } from './utils'
 
 const initialPosition = { x: 17, y: 17 }
-const initialValue = initFields(35, initialPosition)
+const initialValues = initFields(35, initialPosition)
 const defaultInterval = 100
 
 const GameStatus = Object.freeze({
@@ -68,7 +68,7 @@ const isEatingMyself = (fields, position) => {
 }
 
 function App() {
-  const [fields, setFields] = useState(initialValue)
+  const [fields, setFields] = useState(initialValues)
   const [body, setBody] = useState([])
   const [status, setStatus] = useState(GameStatus.init)
   const [direction, setDirection] = useState(Direction.up)
@@ -94,13 +94,15 @@ function App() {
 
   const onStart = () => setStatus(GameStatus.playing)
 
+  const onStop = () => setStatus(GameStatus.suspended)
+
   const onRestart = () => {
     timer = setInterval(() => {
       setTick((tick) => tick + 1)
     }, defaultInterval)
     setDirection(Direction.up)
     setStatus(GameStatus.init)
-    setBody(initialPosition)
+    setBody([initialPosition])
     setFields(initFields(35, initialPosition))
   }
 
